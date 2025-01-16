@@ -1,0 +1,2 @@
+Hello, this is a sample text file.
+You can open and read it using this program.
