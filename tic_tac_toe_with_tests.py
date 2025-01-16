@@ -1,3 +1,5 @@
+import unittest
+
 class Game:
     def __init__(self):
         self.board = [[" " for _ in range(3)] for _ in range(3)]
@@ -9,11 +11,9 @@ class Game:
         print()
 
     def make_move(self, row, col):
-        row, col = row - 1, col - 1
         if self.board[row][col] == " ":
             self.board[row][col] = self.current_player
             return True
-        print("Invalid move. Try again.")
         return False
 
     def switch_player(self):
@@ -33,14 +33,12 @@ class Game:
         return all(cell != " " for row in self.board for cell in row)
 
     def play(self):
+        print("Tic Tac Toe Game!")
         while True:
             self.display_board()
             try:
                 row, col = map(int, input(f"Player {self.current_player}, enter row and column (1-3): ").split())
-                if row < 1 or row > 3 or col < 1 or col > 3:
-                    print("Invalid input. Row and column must be between 1 and 3.")
-                    continue
-                if self.make_move(row, col):
+                if 1 <= row <= 3 and 1 <= col <= 3 and self.make_move(row - 1, col - 1):
                     if self.check_winner():
                         self.display_board()
                         print(f"Player {self.current_player} wins!")
@@ -50,9 +48,44 @@ class Game:
                         print("It's a draw!")
                         break
                     self.switch_player()
-            except (ValueError, IndexError):
+                else:
+                    print("Invalid move. Try again.")
+            except ValueError:
                 print("Invalid input. Enter two numbers between 1 and 3.")
 
-# Run the game
+# Unit Test Program
+class TestTicTacToe(unittest.TestCase):
+    def setUp(self):
+        self.game = Game()
+
+    def test_make_valid_move(self):
+        self.assertTrue(self.game.make_move(0, 0))
+
+    def test_make_invalid_move(self):
+        self.game.make_move(0, 0)
+        self.assertFalse(self.game.make_move(0, 0))
+
+    def test_switch_player(self):
+        self.game.switch_player()
+        self.assertEqual(self.game.current_player, "O")
+
+    def test_check_winner_row(self):
+        self.game.board = [["X", "X", "X"], [" ", " ", " "], [" ", " ", " "]]
+        self.assertTrue(self.game.check_winner())
+
+    def test_check_draw(self):
+        self.game.board = [["X", "O", "X"], ["O", "X", "O"], ["O", "X", "O"]]
+        self.assertTrue(self.game.is_draw())
+
 if __name__ == "__main__":
-    Game().play()
+    while True:
+        choice = input("Enter 'P' to play the game, 'T' to run tests, or 'Q' to quit: ").strip().upper()
+        if choice == "P":
+            Game().play()
+        elif choice == "T":
+            unittest.TextTestRunner().run(unittest.defaultTestLoader.loadTestsFromTestCase(TestTicTacToe))
+        elif choice == "Q":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter 'P', 'T', or 'Q'.")
