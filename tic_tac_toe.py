@@ -33,6 +33,11 @@ class Game:
         return all(cell != " " for row in self.board for cell in row)
 
     def play(self):
+        print("=== Welcome to Tic Tac Toe! ===")
+        print("Take turns entering row and column numbers (1-3).")
+        print("The first player to get three in a row wins!")
+        print()
+        
         while True:
             self.display_board()
             try:
