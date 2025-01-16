@@ -53,5 +53,6 @@ class Game:
             except (ValueError, IndexError):
                 print("Invalid input. Enter two numbers between 1 and 3.")
 
+# Run the game
 if __name__ == "__main__":
     Game().play()
