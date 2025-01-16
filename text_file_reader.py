@@ -3,7 +3,7 @@ from tkinter import filedialog
 
 def open_and_read_file():
     root = tk.Tk()
-    root.withdraw()  # Hide the root window
+    root.withdraw()  
     
     # Open file dialog to select a text file
     file_path = filedialog.askopenfilename(
