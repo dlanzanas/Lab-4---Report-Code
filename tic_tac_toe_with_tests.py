@@ -83,9 +83,11 @@ if __name__ == "__main__":
         if choice == "P":
             Game().play()
         elif choice == "T":
-            unittest.TextTestRunner().run(unittest.defaultTestLoader.loadTestsFromTestCase(TestTicTacToe))
+            print("Running Tests...\n")
+            unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(TestTicTacToe))
         elif choice == "Q":
             print("Goodbye!")
             break
         else:
             print("Invalid choice. Please enter 'P', 'T', or 'Q'.")
+
