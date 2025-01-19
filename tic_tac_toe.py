@@ -33,9 +33,9 @@ class Game:
         return all(cell != " " for row in self.board for cell in row)
 
     def play(self):
-        print("=== Welcome to Tic Tac Toe! ===")
-        print("Take turns entering row and column numbers (1-3).")
-        print("The first player to get three in a row wins!")
+        print("=== WELCOME TO TIC TAC TOE! ===")
+        print("TAKE TURNS ENTERING ROW AND COLUMN NUMBERS (1-3).")
+        print("THE FIRST PLAYER TO GET THREE IN A ROW WINS!")
         print()
         
         while True:
