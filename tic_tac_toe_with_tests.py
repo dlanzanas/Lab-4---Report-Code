@@ -88,5 +88,5 @@ if __name__ == "__main__":
             print("Goodbye!")
             break
         else:
-            print("Invalid choice. Please enter 'P', 'T', or 'Q'.")
+            print("Invalid choice!. Please enter 'P', 'T', or 'Q'.")
 
