@@ -53,7 +53,6 @@ class Game:
             except ValueError:
                 print("Invalid input. Enter two numbers between 1 and 3.")
 
-# Unit Test Program
 class TestTicTacToe(unittest.TestCase):
     def setUp(self):
         self.game = Game()
